@@ -1,0 +1,18 @@
+<h1 class="my-4">New Game</h1>
+<div class="container">
+  <div class="row align-items-center">
+    <% @letters.each do |letter| %>
+    <div class="d-flex align-items-center justify-content-center col-sm bg-primary p-2 m-2 rounded letter"><%= letter.upcase %></div>
+    <% end %>
+  </div>
+</div>
+<form action="/score" method="post">
+  <div class="form-group">
+    <label for="word" class="mt-4 label">What is the longest word you can find?</label>
+    <input type="text" name="word" class="input" value='<%= params[:word] %>'>
+  </div>
+  <input type="submit" class="btn btn-primary px-4 py-2 m-2 button" style="
+    font-size: 25px; font-weight: bold" value="Play">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= hidden_field_tag :letters, @letters %>
+</form>
